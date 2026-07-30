@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "38261b84-097c-408d-b4c5-403cc7fa5258",
+  "path": "arming-thought",
+  "path_key": "arming-thought",
+  "enabled": true,
+  "tags": [
+    "管理"
+  ],
+  "source": {
+    "type": "skillssh",
+    "ref": "hughyau/qiushi-skill/arming-thought",
+    "subpath": "skills\\arming-thought",
+    "branch": null
+  }
+}

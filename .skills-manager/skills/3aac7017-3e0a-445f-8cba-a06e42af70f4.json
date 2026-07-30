@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "3aac7017-3e0a-445f-8cba-a06e42af70f4",
+  "path": "karpathy-guidelines",
+  "path_key": "karpathy-guidelines",
+  "enabled": true,
+  "tags": [
+    "代码"
+  ],
+  "source": {
+    "type": "skillssh",
+    "ref": "multica-ai/andrej-karpathy-skills/karpathy-guidelines",
+    "subpath": "skills\\karpathy-guidelines",
+    "branch": null
+  }
+}

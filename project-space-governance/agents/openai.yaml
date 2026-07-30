@@ -1,0 +1,5 @@
+interface:
+  display_name: "项目空间治理"
+  short_description: "建立可交接、可审计且便于业务阅读的项目文档空间"
+  default_prompt: "Use $project-space-governance to initialize or maintain this project workspace."
+
