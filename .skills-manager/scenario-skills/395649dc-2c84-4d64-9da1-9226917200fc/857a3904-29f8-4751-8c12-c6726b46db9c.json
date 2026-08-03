@@ -6,6 +6,7 @@
   "tools": {
     "codebuddy": true,
     "codex": false,
+    "github_copilot": true,
     "workbuddy": true
   }
 }
