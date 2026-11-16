@@ -4,7 +4,9 @@
   "path": "ontology-business-map",
   "path_key": "ontology-business-map",
   "enabled": true,
-  "tags": [],
+  "tags": [
+    "论文"
+  ],
   "source": {
     "type": "local",
     "ref": null,

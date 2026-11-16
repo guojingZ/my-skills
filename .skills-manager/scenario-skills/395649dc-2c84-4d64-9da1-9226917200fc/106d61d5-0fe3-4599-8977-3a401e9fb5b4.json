@@ -6,6 +6,6 @@
   "tools": {
     "codebuddy": true,
     "codex": false,
-    "workbuddy": true
+    "workbuddy": false
   }
 }
