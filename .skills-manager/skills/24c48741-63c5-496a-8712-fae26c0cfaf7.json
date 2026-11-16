@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill_id": "24c48741-63c5-496a-8712-fae26c0cfaf7",
+  "path": "ontology-business-map",
+  "path_key": "ontology-business-map",
+  "enabled": true,
+  "tags": [],
+  "source": {
+    "type": "local",
+    "ref": null,
+    "subpath": null,
+    "branch": null
+  }
+}

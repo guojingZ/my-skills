@@ -1,0 +1,718 @@
+{
+  "_note": "封闭字段集的可执行版本。required=必须出现，allowed=允许出现的键（未列出的键一律报错，下划线开头的旁挂键除外）。字段口径与 ontology_viewer.py 完全一致。",
+  "versions": {
+    "OBJECT": "2.1",
+    "BEHAVIOR": "1.0",
+    "RULE": "2.0",
+    "EVENT": "1.0",
+    "SCENARIO": "4.0",
+    "REPORT": "1.0"
+  },
+  "prefixes": {
+    "OBJ-": "aggregate",
+    "ASSOC-": "association",
+    "DICT-": "dictionary",
+    "BHV-": "behavior",
+    "RULE-": "rule",
+    "EVT-": "event",
+    "SCN-": "scenario",
+    "QR-": "report",
+    "RPT-": "report"
+  },
+  "models": {
+    "OBJECT": {
+      "file": "m1-object-model.yaml",
+      "root_required": [
+        "model_type",
+        "version",
+        "domain",
+        "aggregates",
+        "aggregate_associations",
+        "data_dictionaries"
+      ],
+      "collections": {
+        "aggregates": {
+          "required": [
+            "id",
+            "name",
+            "alias",
+            "description",
+            "aggregateType",
+            "attributes"
+          ],
+          "allowed": [
+            "id",
+            "name",
+            "alias",
+            "description",
+            "aggregateType",
+            "lifecycle",
+            "tags",
+            "attributes",
+            "entities",
+            "valueObjects",
+            "invariants"
+          ],
+          "id_prefix": "OBJ-",
+          "sub": {
+            "attributes": {
+              "required": [
+                "name",
+                "label",
+                "type"
+              ],
+              "allowed": [
+                "name",
+                "label",
+                "type",
+                "required",
+                "unique",
+                "enumValues",
+                "dictionaryRef",
+                "targetAggregate",
+                "valueObjectRef",
+                "defaultValue",
+                "refRules",
+                "description"
+              ]
+            },
+            "entities": {
+              "required": [
+                "name",
+                "localId",
+                "cardinality"
+              ],
+              "allowed": [
+                "name",
+                "alias",
+                "description",
+                "localId",
+                "cardinality",
+                "cascadeDelete",
+                "attributes"
+              ],
+              "sub": {
+                "attributes": {
+                  "required": [
+                    "name",
+                    "label",
+                    "type"
+                  ],
+                  "allowed": [
+                    "name",
+                    "label",
+                    "type",
+                    "required",
+                    "unique",
+                    "enumValues",
+                    "dictionaryRef",
+                    "targetAggregate",
+                    "valueObjectRef",
+                    "defaultValue",
+                    "refRules",
+                    "description"
+                  ]
+                }
+              }
+            },
+            "valueObjects": {
+              "required": [
+                "name",
+                "immutable"
+              ],
+              "allowed": [
+                "name",
+                "alias",
+                "description",
+                "immutable",
+                "equalityFields",
+                "attributes"
+              ],
+              "sub": {
+                "attributes": {
+                  "required": [
+                    "name",
+                    "label",
+                    "type"
+                  ],
+                  "allowed": [
+                    "name",
+                    "label",
+                    "type",
+                    "required",
+                    "unique",
+                    "enumValues",
+                    "dictionaryRef",
+                    "targetAggregate",
+                    "valueObjectRef",
+                    "defaultValue",
+                    "refRules",
+                    "description"
+                  ]
+                }
+              }
+            },
+            "invariants": {
+              "required": [
+                "name",
+                "expression"
+              ],
+              "allowed": [
+                "name",
+                "description",
+                "expression",
+                "violationMessage",
+                "enforcedAt"
+              ]
+            }
+          }
+        },
+        "aggregate_associations": {
+          "required": [
+            "id",
+            "sourceAggregate",
+            "targetAggregate",
+            "cardinality"
+          ],
+          "allowed": [
+            "id",
+            "sourceAggregate",
+            "targetAggregate",
+            "associationType",
+            "sourceRole",
+            "targetRole",
+            "cardinality",
+            "referenceField",
+            "description"
+          ],
+          "id_prefix": "ASSOC-"
+        },
+        "data_dictionaries": {
+          "required": [
+            "id",
+            "name",
+            "types"
+          ],
+          "allowed": [
+            "id",
+            "name",
+            "description",
+            "types"
+          ],
+          "id_prefix": "DICT-",
+          "sub": {
+            "types": {
+              "required": [
+                "code",
+                "name"
+              ],
+              "allowed": [
+                "code",
+                "name",
+                "description"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "BEHAVIOR": {
+      "file": "m2-behavior-model.yaml",
+      "root_required": [
+        "model_type",
+        "version",
+        "domain",
+        "behaviors"
+      ],
+      "collections": {
+        "behaviors": {
+          "required": [
+            "id",
+            "name",
+            "ownerEntity",
+            "behaviorType",
+            "triggerType",
+            "operationSteps"
+          ],
+          "allowed": [
+            "id",
+            "name",
+            "alias",
+            "ownerEntity",
+            "behaviorType",
+            "triggerType",
+            "operationSteps",
+            "preconditions",
+            "postconditions",
+            "appliedRules",
+            "requiredPermissions",
+            "producedEvents",
+            "syncTriggers",
+            "queryReportRef"
+          ],
+          "id_prefix": "BHV-"
+        }
+      }
+    },
+    "RULE": {
+      "file": "m3-rule-model.yaml",
+      "root_required": [
+        "model_type",
+        "version",
+        "domain",
+        "rules"
+      ],
+      "collections": {
+        "rules": {
+          "required": [
+            "id",
+            "name",
+            "ruleType",
+            "description",
+            "inputParams",
+            "outputType",
+            "expression",
+            "reusedBy",
+            "version"
+          ],
+          "allowed": [
+            "id",
+            "name",
+            "alias",
+            "ruleType",
+            "description",
+            "inputParams",
+            "outputType",
+            "expression",
+            "reusedBy",
+            "externalEngine",
+            "version",
+            "executionMode",
+            "triggerType",
+            "subscribedEvents",
+            "triggeredBehaviors",
+            "producedEvents",
+            "eventTriggerCondition",
+            "timeout"
+          ],
+          "id_prefix": "RULE-",
+          "sub": {
+            "inputParams": {
+              "required": [
+                "name",
+                "type",
+                "sourceField"
+              ],
+              "allowed": [
+                "name",
+                "type",
+                "sourceField",
+                "required",
+                "description"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "EVENT": {
+      "file": "me-event-model.yaml",
+      "root_required": [
+        "model_type",
+        "version",
+        "domain",
+        "events"
+      ],
+      "collections": {
+        "events": {
+          "required": [
+            "eventId",
+            "eventName",
+            "producerType",
+            "producerBehaviorRef",
+            "producerEntityRef",
+            "payload",
+            "ordering",
+            "version"
+          ],
+          "allowed": [
+            "eventId",
+            "eventName",
+            "alias",
+            "description",
+            "producerType",
+            "producerBehaviorRef",
+            "producerRuleRef",
+            "producerEntityRef",
+            "triggerCondition",
+            "payload",
+            "subscribers",
+            "ordering",
+            "version"
+          ],
+          "id_prefix": "EVT-",
+          "sub": {
+            "payload": {
+              "required": [
+                "name",
+                "type"
+              ],
+              "allowed": [
+                "name",
+                "type",
+                "required",
+                "description",
+                "sourceField"
+              ]
+            },
+            "subscribers": {
+              "required": [
+                "subscriberType"
+              ],
+              "allowed": [
+                "subscriberType",
+                "subscriberBehaviorRef",
+                "subscriberRuleRef",
+                "priority"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "SCENARIO": {
+      "file": "m4-scenario-model.yaml",
+      "root_required": [
+        "model_type",
+        "version",
+        "domain",
+        "event_scenarios"
+      ],
+      "collections": {
+        "event_scenarios": {
+          "required": [
+            "id",
+            "name",
+            "description",
+            "sourceObjectRef",
+            "targetObjectRefs",
+            "triggerEventRef",
+            "steps"
+          ],
+          "allowed": [
+            "id",
+            "name",
+            "alias",
+            "description",
+            "sourceObjectRef",
+            "targetObjectRefs",
+            "triggerEventRef",
+            "preconditions",
+            "postconditions",
+            "steps"
+          ],
+          "id_prefix": "SCN-",
+          "sub": {
+            "steps": {
+              "required": [
+                "stepId",
+                "stepType",
+                "nextSteps"
+              ],
+              "allowed": [
+                "stepId",
+                "stepType",
+                "behaviorRef",
+                "ruleRef",
+                "eventRef",
+                "nextSteps",
+                "gatewayType",
+                "timeout",
+                "waitFor",
+                "branches",
+                "condition"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "REPORT": {
+      "file": "m7-report-model.yaml",
+      "root_required": [
+        "model_type",
+        "version",
+        "domain",
+        "query_reports"
+      ],
+      "collections": {
+        "query_reports": {
+          "required": [
+            "id",
+            "name",
+            "alias",
+            "objectType",
+            "description",
+            "behaviorRef",
+            "sourceObjects",
+            "resultColumns",
+            "version"
+          ],
+          "allowed": [
+            "id",
+            "name",
+            "alias",
+            "objectType",
+            "description",
+            "behaviorRef",
+            "sourceObjects",
+            "joins",
+            "parameters",
+            "conditions",
+            "resultColumns",
+            "groupBy",
+            "having",
+            "orderBy",
+            "pagination",
+            "reportOptions",
+            "version"
+          ],
+          "id_prefix": [
+            "QR-",
+            "RPT-"
+          ],
+          "sub": {
+            "sourceObjects": {
+              "required": [
+                "objectRef",
+                "alias",
+                "primary"
+              ],
+              "allowed": [
+                "objectRef",
+                "alias",
+                "primary"
+              ]
+            },
+            "joins": {
+              "required": [
+                "leftSource",
+                "rightSource",
+                "condition"
+              ],
+              "allowed": [
+                "joinType",
+                "leftSource",
+                "rightSource",
+                "condition"
+              ]
+            },
+            "parameters": {
+              "required": [
+                "name",
+                "dataType"
+              ],
+              "allowed": [
+                "name",
+                "label",
+                "dataType",
+                "required"
+              ]
+            },
+            "conditions": {
+              "required": [
+                "field",
+                "operator",
+                "value"
+              ],
+              "allowed": [
+                "field",
+                "operator",
+                "value"
+              ]
+            },
+            "resultColumns": {
+              "required": [
+                "name",
+                "label",
+                "dataType",
+                "sourceExpression",
+                "aggregateFunction"
+              ],
+              "allowed": [
+                "name",
+                "label",
+                "dataType",
+                "sourceExpression",
+                "aggregateFunction",
+                "nullable",
+                "visible",
+                "sortable"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "budgets": {
+    "aggregates": [
+      15,
+      30,
+      35
+    ],
+    "aggregate_associations": [
+      15,
+      45,
+      60
+    ],
+    "behaviors": [
+      25,
+      50,
+      60
+    ],
+    "rules": [
+      10,
+      20,
+      25
+    ],
+    "events": [
+      8,
+      20,
+      25
+    ],
+    "event_scenarios": [
+      4,
+      8,
+      10
+    ],
+    "query_reports": [
+      10,
+      20,
+      25
+    ]
+  },
+  "enums": {
+    "modelType": [
+      "OBJECT",
+      "BEHAVIOR",
+      "RULE",
+      "EVENT",
+      "SCENARIO",
+      "REPORT"
+    ],
+    "aggregateType": [
+      "AGGREGATE_ROOT"
+    ],
+    "associationType": [
+      "REFERENCE",
+      "DEPENDENCY"
+    ],
+    "cardinality": [
+      "ONE",
+      "ZERO_OR_ONE",
+      "ONE_OR_MORE",
+      "ZERO_OR_MORE",
+      "ONE_TO_ONE",
+      "ONE_TO_MANY",
+      "MANY_TO_ONE",
+      "MANY_TO_MANY"
+    ],
+    "attributeType": [
+      "String",
+      "Integer",
+      "Decimal",
+      "Date",
+      "DateTime",
+      "Boolean",
+      "Enum",
+      "Money",
+      "Object",
+      "Void",
+      "ValueObject",
+      "AggregateRootRef",
+      "DictionaryRef"
+    ],
+    "enforcedAt": [
+      "ON_CREATE",
+      "ON_UPDATE",
+      "ON_DELETE",
+      "ALWAYS"
+    ],
+    "behaviorType": [
+      "COMMAND",
+      "QUERY",
+      "EVENT_HANDLER"
+    ],
+    "triggerType": [
+      "USER_ACTION",
+      "SYSTEM",
+      "EVENT",
+      "EXTERNAL"
+    ],
+    "ruleType": [
+      "VALIDATION",
+      "CALCULATION",
+      "DERIVATION",
+      "TRANSFORMATION",
+      "RISK",
+      "EVENT_DRIVEN"
+    ],
+    "executionMode": [
+      "SYNC",
+      "ASYNC"
+    ],
+    "producerType": [
+      "BEHAVIOR",
+      "RULE"
+    ],
+    "subscriberType": [
+      "BEHAVIOR",
+      "RULE"
+    ],
+    "ordering": [
+      "AT_LEAST_ONCE",
+      "EXACTLY_ONCE",
+      "BEST_EFFORT"
+    ],
+    "stepType": [
+      "BEHAVIOR_CALL",
+      "RULE_EVALUATE",
+      "EVENT_EMIT"
+    ],
+    "objectType": [
+      "DETAIL_QUERY",
+      "LIST_QUERY",
+      "STATISTICAL_QUERY",
+      "REPORT"
+    ],
+    "aggregateFunction": [
+      "NONE",
+      "SUM",
+      "COUNT",
+      "AVG",
+      "MAX",
+      "MIN",
+      "COUNT_DISTINCT"
+    ],
+    "joinType": [
+      "INNER",
+      "LEFT",
+      "RIGHT"
+    ],
+    "operator": [
+      "EQ",
+      "NE",
+      "GT",
+      "GE",
+      "LT",
+      "LE",
+      "IN",
+      "NOT_IN",
+      "LIKE",
+      "BETWEEN",
+      "IS_NULL",
+      "IS_NOT_NULL"
+    ]
+  }
+}
